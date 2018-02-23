@@ -1,6 +1,6 @@
 package ch.hslu.ad.sw01.ex01;
 
-public class Allocation implements Comparable<Allocation>{
+public final class Allocation implements Comparable<Allocation>{
     private static int START_ADDRESS = 0;
     private final int startAddress;
     private final int memoryBlockSize;

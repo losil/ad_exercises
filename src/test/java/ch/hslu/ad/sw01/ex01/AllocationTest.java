@@ -1,8 +1,11 @@
 package ch.hslu.ad.sw01.ex01;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mutabilitydetector.unittesting.MutabilityAssert.assertImmutable;
 
 public class AllocationTest {
 
@@ -33,5 +36,16 @@ public class AllocationTest {
     public void testToString() {
         Allocation allo = new Allocation(8);
         assertNotNull(allo.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        EqualsVerifier.forClass(Allocation.class);
+
+    }
+
+    @Test
+    public void testImmutability() {
+        assertImmutable(Allocation.class);
     }
 }
