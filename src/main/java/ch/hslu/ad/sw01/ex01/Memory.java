@@ -5,16 +5,19 @@ import java.util.ArrayList;
 public abstract class Memory {
 
     private int size;
+    private int startAddress;
     private ArrayList<Allocation> allocation;
 
     public Memory(final int size) {
         this.allocation = new ArrayList<>();
         this.size = size;
+        this.startAddress = 0;
     }
 
     public Allocation malloc(final int blockSize) {
-        Allocation alloc = new Allocation(blockSize);
+        Allocation alloc = new Allocation(this.startAddress, blockSize);
         this.allocation.add(alloc);
+        this.startAddress += blockSize;
         return alloc;
     }
 

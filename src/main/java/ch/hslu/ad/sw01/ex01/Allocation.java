@@ -1,14 +1,12 @@
 package ch.hslu.ad.sw01.ex01;
 
 public final class Allocation implements Comparable<Allocation>{
-    private static int START_ADDRESS = 0;
     private final int startAddress;
     private final int memoryBlockSize;
 
-    public Allocation(final int memoryBlockSize) {
-        this.startAddress = START_ADDRESS;
+    public Allocation(final int startAddress, final int memoryBlockSize) {
+        this.startAddress = startAddress;
         this.memoryBlockSize = memoryBlockSize;
-        START_ADDRESS += memoryBlockSize;
     }
 
     public int getSize() {
@@ -33,17 +31,11 @@ public final class Allocation implements Comparable<Allocation>{
     }
 
     public int compareTo(Allocation other){
-        if (this.startAddress < other.startAddress) {
-            return 1;
-        }
-
-        else if(this.startAddress < other.startAddress) {
-            return -1;
-        }
-
-        else {
+        if (other == this) {
             return 0;
         }
+
+        return Integer.compare(this.startAddress, other.startAddress);
     }
 
     public String toString() {
