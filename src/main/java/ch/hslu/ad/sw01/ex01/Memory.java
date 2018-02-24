@@ -1,23 +1,25 @@
 package ch.hslu.ad.sw01.ex01;
 
+import java.util.ArrayList;
+
 public abstract class Memory {
 
     private int size;
-    private int used;
+    private ArrayList<Allocation> allocation;
 
     public Memory(final int size) {
+        this.allocation = new ArrayList<>();
         this.size = size;
     }
 
     public Allocation malloc(final int blockSize) {
-        this.used += blockSize;
         Allocation alloc = new Allocation(blockSize);
+        this.allocation.add(alloc);
         return alloc;
     }
 
     public void free(Allocation block) {
-        this.used -= block.getSize();
-        block = null;
+        this.allocation.remove(block);
     }
 
     protected int getSize() {
@@ -25,7 +27,12 @@ public abstract class Memory {
     }
 
     protected int getUsed() {
-        return this.used;
+        int i = 0;
+        for (Allocation alloc : this.allocation) {
+            i += alloc.getSize();
+        }
+        return i;
     }
+
 
 }
