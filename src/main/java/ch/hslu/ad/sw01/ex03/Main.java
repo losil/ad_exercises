@@ -36,6 +36,6 @@ public class Main {
     }
 
     public static int fibRec2(final int i) {
-
+        return 0;
     }
 }
