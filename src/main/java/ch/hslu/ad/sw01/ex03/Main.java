@@ -35,7 +35,7 @@ public class Main {
         return fiboRec1(i-2) + fiboRec1(i-1);
     }
 
-    public static int fibRedc2(final int i) {
+    public static int fibRec2(final int i) {
 
     }
 }
