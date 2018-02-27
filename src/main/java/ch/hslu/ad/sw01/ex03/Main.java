@@ -11,6 +11,7 @@ public class Main {
         LOG.info("Fibonacci-Zahl von 10: " + fiboRec1(10));
         LOG.info("Fibonacci-Zahl von 5: " + fiboRec1(5));
         LOG.info("Fibonacci-Zahl von 13: " + fiboRec1(13));
+        LOG.info(fiboRec2(10));
 
 
     }
@@ -35,7 +36,7 @@ public class Main {
         return fiboRec1(i-2) + fiboRec1(i-1);
     }
 
-    public static int fibRec2(final int i) {
+    public static int fiboRec2(final int i) {
         return 0;
     }
 }

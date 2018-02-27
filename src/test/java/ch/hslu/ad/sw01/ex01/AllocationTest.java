@@ -1,6 +1,7 @@
 package ch.hslu.ad.sw01.ex01;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -40,7 +41,7 @@ public class AllocationTest {
 
     @Test
     public void testEquals() {
-        EqualsVerifier.forClass(Allocation.class);
+        EqualsVerifier.forClass(Allocation.class).suppress(Warning.ALL_FIELDS_SHOULD_BE_USED).verify();
 
     }
 

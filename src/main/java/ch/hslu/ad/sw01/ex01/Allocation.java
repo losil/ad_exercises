@@ -14,7 +14,7 @@ public final class Allocation implements Comparable<Allocation>{
     }
 
     public int hashCode() {
-        return Integer.hashCode(this.startAddress + this.memoryBlockSize);
+        return Integer.hashCode(this.startAddress);
     }
 
     public boolean equals(final Object obj) {
@@ -27,7 +27,7 @@ public final class Allocation implements Comparable<Allocation>{
         }
 
         final Allocation other = (Allocation) obj;
-        return (this.memoryBlockSize == other.memoryBlockSize && this.startAddress == other.startAddress);
+        return (this.startAddress == other.startAddress);
     }
 
     public int compareTo(Allocation other){
