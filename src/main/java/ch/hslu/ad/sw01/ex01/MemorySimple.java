@@ -1,10 +1,10 @@
 package ch.hslu.ad.sw01.ex01;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class MemorySimple implements Memory {
-    private ArrayList<Allocation> allocations = new ArrayList<>();
+    private List<Allocation> allocations = new LinkedList<>();
+    private Map<Integer, Integer> freeBlocks = new HashMap<>();
     private int size;
     private int startAddress;
 
@@ -15,6 +15,21 @@ public class MemorySimple implements Memory {
     }
 
     public Allocation malloc(final int blockSize) {
+        if (freeBlocks.containsValue(blockSize)) {
+            int start = 0;
+            for (Map.Entry<Integer, Integer> entry : freeBlocks.entrySet()) {
+                if (entry.getValue().equals(blockSize)) {
+                    start = entry.getKey();
+                    freeBlocks.remove(entry.getKey());
+                    break;
+                }
+            }
+            Allocation alloc = new Allocation(start, blockSize);
+            this.allocations.add(alloc);
+            return alloc;
+
+
+        }
         Allocation alloc = new Allocation(this.startAddress, blockSize);
         this.allocations.add(alloc);
         this.startAddress += blockSize;
@@ -23,6 +38,7 @@ public class MemorySimple implements Memory {
 
     @Override
     public void free(Allocation block) {
+        this.freeBlocks.put(block.getStartAddress(),block.getSize());
         this.allocations.remove(block);
     }
 

@@ -17,5 +17,8 @@ public class MemoryDemo {
         LOG.info(memory);
         memory.free(block1);
         LOG.info(memory);
+        final Allocation block3 = memory.malloc(18);
+        LOG.info(block3);
+        LOG.info(memory);
     }
 }

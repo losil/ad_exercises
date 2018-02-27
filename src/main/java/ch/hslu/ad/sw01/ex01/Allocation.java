@@ -13,6 +13,8 @@ public final class Allocation implements Comparable<Allocation>{
         return this.memoryBlockSize;
     }
 
+    public int getStartAddress() { return this.startAddress;}
+
     public int hashCode() {
         return Integer.hashCode(this.startAddress);
     }
