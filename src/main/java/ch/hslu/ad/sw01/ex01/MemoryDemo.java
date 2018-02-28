@@ -20,5 +20,12 @@ public class MemoryDemo {
         final Allocation block3 = memory.malloc(18);
         LOG.info(block3);
         LOG.info(memory);
+        final Allocation block4 = memory.malloc(16);
+        LOG.info(block4);
+        LOG.info(memory);
+        final Allocation block5 = memory.malloc(16);
+        LOG.info(block5);
+        LOG.info(memory);
+
     }
 }
