@@ -13,6 +13,8 @@ public class Main {
         LOG.info("Fibonacci-Zahl von 13: " + fiboRec1(13));
         LOG.info(fiboRec2(10));
 
+        LOG.info("FiboIter von 10: " + fiboIter(10));
+
 
     }
 
@@ -38,5 +40,15 @@ public class Main {
 
     public static int fiboRec2(final int i) {
         return 0;
+    }
+
+    public static int fiboIter(final int n) {
+        int result = 0, y = 1, z = 1;
+        for (int i = 0; i < n; i++) {
+            result = y;
+            y = z;
+            z = result + y;
+        }
+        return result;
     }
 }
