@@ -10,15 +10,15 @@ public class Main {
     public static void main(String[] args) {
         LOG.info("Fibonacci-Zahl von 10: " + fiboRec1(10));
         LOG.info("Fibonacci-Zahl von 5: " + fiboRec1(5));
-        LOG.info("Fibonacci-Zahl von 13: " + fiboRec1(13));
-        LOG.info(fiboRec2(10));
+        LOG.info("Fibonacci-Zahl von 40: " + fiboRec1(40));
+        LOG.info("Fibo2 von 10: " + fiboRec2(10));
 
         LOG.info("FiboIter von 10: " + fiboIter(10));
 
 
     }
 
-    public static int fiboRec1(final int i) {
+    private static int fiboRec1(final int i) {
 
         /*
         Rekursionsbasis
@@ -38,11 +38,27 @@ public class Main {
         return fiboRec1(i-2) + fiboRec1(i-1);
     }
 
-    public static int fiboRec2(final int i) {
-        return 0;
+    private static long fiboRec2(final int n) {
+        final long[] interimResults = new long[n];
+
+        //Rekursionsbasis erstellen
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        //Rekursionsvorschrift
+        if (interimResults[n - 1] == 0) {
+            long result = (fiboRec2(n - 2) + fiboRec2(n - 1));
+            interimResults[n - 1] = result;
+            return result;
+        }
+
+        return interimResults[n - 3] + interimResults[n - 2];
     }
 
-    public static int fiboIter(final int n) {
+    private static int fiboIter(final int n) {
         int result = 0, y = 1, z = 1;
         for (int i = 0; i < n; i++) {
             result = y;

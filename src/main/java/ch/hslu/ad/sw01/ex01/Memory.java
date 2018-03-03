@@ -5,13 +5,13 @@ public interface Memory {
 
     /**
      * Allocate block on Memory with given size.
-     * @param prefered size of block
+     * @param blockSize prefered size of block
      */
     Allocation malloc(int blockSize);
 
     /**
      * Free Memory of Allocation added as parameter.
-     * @param specific allocation the be deleted
+     * @param block specifix allocation to be deleted
      */
     void free(Allocation block);
 
