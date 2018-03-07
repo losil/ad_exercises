@@ -18,7 +18,7 @@ public class Main {
 
     }
 
-    private static int fiboRec1(final int i) {
+    public static int fiboRec1(final int i) {
 
         /*
         Rekursionsbasis
@@ -38,7 +38,7 @@ public class Main {
         return fiboRec1(i-2) + fiboRec1(i-1);
     }
 
-    private static long fiboRec2(final int n) {
+    public static long fiboRec2(final int n) {
         final long[] interimResults = new long[n];
 
         //Rekursionsbasis erstellen
@@ -58,7 +58,7 @@ public class Main {
         return interimResults[n - 3] + interimResults[n - 2];
     }
 
-    private static int fiboIter(final int n) {
+    public static int fiboIter(final int n) {
         int result = 0, y = 1, z = 1;
         for (int i = 0; i < n; i++) {
             result = y;
