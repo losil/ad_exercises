@@ -22,7 +22,7 @@ public class Stack implements Stackable {
     @Override
     public String peek() {
         if (top != 0) {
-            return items[top];
+            return items[top - 1];
         } else {
             throw new ArrayStoreException("Stack is empty!");
         }

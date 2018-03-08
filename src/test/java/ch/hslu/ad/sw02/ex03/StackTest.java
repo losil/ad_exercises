@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
-
+import static org.assertj.core.api.Assertions.*;
 public class StackTest {
 
     @Rule
@@ -36,6 +36,10 @@ public class StackTest {
 
     @Test
     public void testPeek() {
+        Stack stack = new Stack(10);
+        stack.push("string");
+        assertThat(stack.peek()).isEqualTo("string");
+        assertThat(stack.peek()).isEqualTo("string");
     }
 
     @Test
