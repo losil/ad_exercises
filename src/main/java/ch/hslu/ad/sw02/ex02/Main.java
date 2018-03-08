@@ -14,8 +14,8 @@ public class Main {
         alloList.add(alloc1);
         alloList.add(alloc2);
         LOG.info("Size of list: " + alloList.size());
-        alloList.remove(alloc2);
-        alloList.remove(alloc1);
+        LOG.info("Removal from 2nd object is: " + alloList.remove(alloc2));
+        LOG.info("Removal from 1st object is: " + alloList.remove(alloc1));
         LOG.info("Size of List: " + alloList.size());
 
 
