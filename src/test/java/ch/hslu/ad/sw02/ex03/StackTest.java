@@ -44,13 +44,35 @@ public class StackTest {
 
     @Test
     public void testPop() {
+        Stack stack = new Stack(10);
+        stack.push("string");
+        assertThat(stack.pop()).isEqualTo("string");
+    }
+
+    @Rule
+    public ExpectedException thrown_pop = ExpectedException.none();
+    @Test
+    public void testEmptyPop() {
+        Stack stack = new Stack(10);
+        thrown.expect(ArrayStoreException.class);
+        thrown.expectMessage("Stack is empty!");
+        stack.pop();
     }
 
     @Test
     public void testPush() {
+        Stack stack = new Stack(10);
+        assertThat(stack.push("bla")).isEqualTo("bla");
     }
 
     @Test
     public void testSearch() {
+        Stack stack = new Stack(10);
+        stack.push("search string");
+        assertThat(stack.search("search string")).isEqualTo(1);
+        stack.push("search string 2");
+        assertThat(stack.search("search string")).isEqualTo(2);
+        assertThat(stack.search("search string 2")).isEqualTo(1);
+
     }
 }
