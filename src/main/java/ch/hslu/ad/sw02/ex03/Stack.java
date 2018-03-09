@@ -58,7 +58,7 @@ public class Stack implements Stackable {
         int i = 0;
         for (String string : items) {
             if (string.equals(str)) {
-                return i;
+                return this.top - i;
             }
             i++;
         }
