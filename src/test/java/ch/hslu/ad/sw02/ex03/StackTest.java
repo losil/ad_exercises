@@ -28,8 +28,8 @@ public class StackTest {
     public void testIsFull() {
         Stack stack = new Stack(1);
         stack.push("str");
-        thrown.expect(ArrayIndexOutOfBoundsException.class);
-        thrown.expectMessage("There is no more place on the stack!");
+        thrown.expect(StackFullException.class);
+        thrown.expectMessage("Stack is full!");
         stack.push("full");
 
     }

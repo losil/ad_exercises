@@ -13,8 +13,10 @@ public class Main {
         String str1 = stack.push("toll");
         String str2 = stack.push("sind ");
         String str3 = stack.push("Datenstrukturen");
+        LOG.info(stack.toString());
         LOG.info(stack.pop());
         LOG.info(stack.pop());
         LOG.info(stack.pop());
+        LOG.info(stack.toString());
     }
 }

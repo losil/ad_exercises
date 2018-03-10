@@ -49,7 +49,7 @@ public class Stack implements Stackable {
                 throw new IllegalArgumentException("Provided Object is not a String");
             }
         } else {
-            throw new ArrayIndexOutOfBoundsException("There is no more place on the stack!");
+            throw new StackFullException("Stack is full!");
         }
     }
 
@@ -63,5 +63,10 @@ public class Stack implements Stackable {
             i++;
         }
         throw new NoSuchElementException();
+    }
+
+    @Override
+    public String toString() {
+        return "Stack with size: " + this.items.length + "; and used levels:" + (this.top);
     }
 }
