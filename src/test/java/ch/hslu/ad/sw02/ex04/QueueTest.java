@@ -6,6 +6,8 @@ import org.junit.rules.ExpectedException;
 
 import javax.annotation.concurrent.ThreadSafe;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -97,6 +99,8 @@ public class QueueTest {
     @Test
     public void testEmpty() {
         Queue queue = new Queue();
-        assertThat(queue.remove()).isEqualTo(null);
+        thrown.expect(NoSuchElementException.class);
+        thrown.expectMessage("Queue is empty!");
+        queue.remove();
     }
 }

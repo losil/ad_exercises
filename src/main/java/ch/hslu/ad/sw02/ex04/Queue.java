@@ -1,21 +1,25 @@
 package ch.hslu.ad.sw02.ex04;
 
+import java.util.NoSuchElementException;
+
 public class Queue implements Queueable<Character> {
 
     private char[] items;
     private int head;
     private int tail;
+    private int size;
 
     public Queue() {
         this.items = new char[8];
         this.tail = 0;
         this.head = 0;
+        this.size = 0;
     }
 
 
     @Override
     public boolean add(Character c) {
-        if (head == (tail + 1) % this.items.length) {
+        if (size == 8) {
             throw new IllegalStateException("Queue is full.");
         }
         offer(c);
@@ -29,16 +33,17 @@ public class Queue implements Queueable<Character> {
 
     @Override
     public boolean offer(Character c) {
-        if (this.head == (this.tail + 1) % this.items.length) {
+        if (this.size == 8) {
             return false;
-        } else if (this.head == this.tail && this.items[tail] == 0) {
+        } else if (size == 0) {
+            this.size++;
             this.items[tail] = c;
             return true;
         } else {
-            incementTail();
+            incrementTail();
             this.items[tail] = c;
+            this.size++;
             return true;
-
         }
     }
 
@@ -53,34 +58,42 @@ public class Queue implements Queueable<Character> {
 
     @Override
     public Character poll() {
-        if (this.items[head] == 0) {
+        if (this.size == 0) {
             return null;
         } else {
             char c = this.items[this.head];
             this.items[this.head] = 0;
-            incementHead();
+            incrementHead();
+            this.size--;
+            if (size == 0) {
+                this.head = 0;
+                this.tail = 0;
+            }
             return c;
         }
     }
 
     @Override
     public Character remove() {
+        if (this.size == 0) {
+            throw new NoSuchElementException("Queue is empty!");
+        }
         return poll();
     }
 
     @Override
     public String toString() {
-        return "Queue with size: 8; head @ " + this.head + " and tail @: " + this.tail;
+        return "Queue with size: 8; head @ " + this.head + " and tail @: " + this.tail + " and number of elements: " + this.size;
     }
 
-    private void incementHead() {
+    private void incrementHead() {
         if (this.head == 7) {
             this.head = 0;
         }
         this.head++;
     }
 
-    private void incementTail() {
+    private void incrementTail() {
         if (this.tail == 7) {
             this.tail = 0;
         }
