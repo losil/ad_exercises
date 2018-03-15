@@ -2,7 +2,7 @@ package ch.hslu.ad.sw02.ex03;
 
 import java.util.NoSuchElementException;
 
-public class Stack implements Stackable {
+public class Stack implements Stackable<String> {
     private String[] items;
     private int size;
     private int top;
