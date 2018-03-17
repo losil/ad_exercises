@@ -1,50 +1,19 @@
 package ch.hslu.ad.sw03.ex05;
 
 public interface Tree<E> {
+    boolean search(E item);
 
-    /**
-     * Returns root element of the Tree.
-     *
-     * @return root
-     */
-    E getRoot();
+    void insert(E item);
 
-    /**
-     * Returns first elemement of tree;
-     *
-     * @return first
-     */
+    void remove(E item);
+
+    E size();
     E first();
-
-    /**
-     * Returns last element of the list.
-     *
-     * @return last
-     */
     E last();
 
+    E ceiling(E item);
 
-    /**
-     * Goes one higher
-     *
-     * @param e
-     * @return
-     */
-    E higher(E e);
+    E higher(E item);
 
-    /**
-     * Step lower in the tree.
-     *
-     * @param e
-     * @return
-     */
-    E lower(E e);
-
-    /**
-     * do something
-     *
-     * @param e
-     * @return
-     */
-    E ceiling(E e);
+    E lower(E item);
 }

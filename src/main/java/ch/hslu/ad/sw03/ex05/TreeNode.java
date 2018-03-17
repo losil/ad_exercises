@@ -2,67 +2,80 @@ package ch.hslu.ad.sw03.ex05;
 
 import java.util.Objects;
 
-public class TreeNode {
-    private TreeNode parent;
-    private TreeNode leftChildren;
-    private TreeNode rightChildren;
-    private String data;
+public final class TreeNode {
 
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+    private int data;
+    private int hash;
+
+    public TreeNode(TreeNode leftChild, TreeNode rightChild, int data) {
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+        this.data = data;
+        hash = this.hashCode();
+    }
+
+    public TreeNode(int data) {
+        this(null, null, data);
+    }
 
     public TreeNode() {
-        this(null, null, null);
+        this(null, null, 0);
     }
 
-    public TreeNode(TreeNode rightChild, TreeNode leftChild, String data) {
-        this.parent = parent;
-        this.leftChildren = leftChild;
-        this.rightChildren = rightChild;
-        this.data = data;
+    public TreeNode getRightChild() {
+        return rightChild;
     }
 
-    public TreeNode getParent() {
-        return parent;
+    public void setRightChild(TreeNode rightChild) {
+        this.rightChild = rightChild;
     }
 
-    public void setParent(TreeNode parent) {
-        this.parent = parent;
+    public TreeNode getLeftChild() {
+        return leftChild;
     }
 
-    public TreeNode getLeftChildren() {
-        return leftChildren;
+    public void setLeftChild(TreeNode leftChild) {
+        this.leftChild = leftChild;
     }
 
-    public void setLeftChildren(TreeNode leftChildren) {
-        this.leftChildren = leftChildren;
-    }
 
-    public TreeNode getRightChildren() {
-        return rightChildren;
-    }
-
-    public void setRightChildren(TreeNode rightChildren) {
-        this.rightChildren = rightChildren;
-    }
-
-    public String getData() {
+    public int getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(int data) {
         this.data = data;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TreeNode)) return false;
-        TreeNode treeNode = (TreeNode) o;
-        return Objects.equals(data, treeNode.data);
+    public String toString() {
+        return "TreeNode{" +
+                "leftChild=" + leftChild +
+                ", rightChild=" + rightChild +
+                ", data='" + data + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof TreeNode)) {
+            return false;
+        }
+
+        TreeNode other = (TreeNode) obj;
+        return other.getData() == this.getData() && Objects.equals(other.leftChild, this.leftChild) && Objects.equals(other.rightChild, this.rightChild);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(data);
+        return Objects.hash(this.data, this.leftChild, this.rightChild);
     }
+
+
 }
