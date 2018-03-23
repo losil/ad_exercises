@@ -1,62 +1,177 @@
 package ch.hslu.ad.sw04.ex01;
 
-public class HashSet implements HashSetInterface<Integer> {
-    private int[] elements;
-    private int size;
+import java.util.Arrays;
+
+public class HashSet implements Set<Integer> {
+
+    private Object[] items;
+    private int itemCount;
 
     public HashSet(int size) {
-        this.elements = new int[size];
-        this.size = 0;
+        items = new Object[size];
+        itemCount = 0;
+
     }
 
+    public HashSet() {
+        this(10);
+    }
 
     @Override
-    public boolean add(Integer i) {
-        if (this.size == (this.elements.length) || !contains(i)) {
-            return false;
-        } else {
-            this.elements[this.size] = i;
-            this.size++;
+    public boolean add(Integer newItem) {
+        int hash = newItem.hashCode();
+        int index = Math.abs(hash % items.length);
+
+        if (items[index] == null || items[index] instanceof Tombstone) {
+            items[index] = newItem;
+            itemCount++;
             return true;
-        }
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        if (!contains(o)) {
-            return false;
         } else {
-            int index = search((Integer) o);
-            this.elements[index] = 0;
-            this.size--;
-            return true;
+            int currentIndex = index + 1;
+            while (currentIndex != index) {
+                if (currentIndex < items.length) {
+                    if (items[currentIndex] == null || items[currentIndex] instanceof Tombstone) {
+                        items[currentIndex] = newItem;
+                        itemCount++;
+                        return true;
+                    } else {
+                        currentIndex++;
+                    }
+                } else {
+                    currentIndex = 0;
+                    continue;
 
-        }
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        if (!(o instanceof Integer) || this.size == 0) {
-            return false;
-        }
-
-        for (int i : elements) {
-            if (i == (int) o) {
-                return true;
+                }
             }
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean contains(Integer item) {
+        int hash = item.hashCode();
+        int index = Math.abs(hash % items.length);
+        if (item instanceof Integer) {
+            if (!(items[index] instanceof Tombstone)) {
+                if (items[index].equals(item)) {
+                    return true;
+                }
+            } else {
+
+                int currentIndex = index + 1;
+                while (currentIndex != index) {
+                    if (items[currentIndex] instanceof Tombstone) {
+                        currentIndex++;
+                        continue;
+                    } else {
+                        if (currentIndex < items.length) {
+                            if (items[currentIndex].equals(item)) {
+                                return true;
+                            } else {
+                                currentIndex++;
+                            }
+                        } else {
+                            currentIndex = 0;
+                            continue;
+
+                        }
+                    }
+                }
+
+                return false;
+            }
+        } else {
+            throw new IllegalArgumentException("Only searching for Integer values allowed.");
+        }
+
+
+        return false;
+    }
+
+    @Override
+    public boolean remove(Integer item) {
+        int hash = item.hashCode();
+        int index = Math.abs(hash % items.length);
+        if (item instanceof Integer) {
+            if (!(items[index] instanceof Tombstone)) {
+                if (items[index].equals(item)) {
+                    items[index] = new Tombstone();
+                    itemCount--;
+                    return true;
+                }
+
+            } else {
+                int currentIndex = index + 1;
+                while (currentIndex != index) {
+                    if (items[currentIndex] instanceof Tombstone) {
+                        currentIndex++;
+                        continue;
+                    } else {
+                        if (currentIndex < items.length) {
+                            if (items[currentIndex].equals(item)) {
+                                items[currentIndex] = new Tombstone();
+                                itemCount--;
+                                return true;
+                            } else {
+                                currentIndex++;
+                            }
+                        } else {
+                            currentIndex = 0;
+                            continue;
+
+                        }
+                    }
+                }
+                return false;
+            }
+        } else {
+            throw new IllegalArgumentException("Only Integer values allowed to be removed.");
         }
         return false;
     }
 
-    private int search(Integer hash) {
+    @Override
+    public boolean isEmpty() {
+        return this.itemCount == 0;
+    }
+
+    @Override
+    public boolean isFull() {
+        if (itemCount == items.length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int size() {
+        return this.itemCount;
+    }
+
+    @Override
+    public String toString() {
+        return "HashSet{" +
+                "items=" + Arrays.toString(items) +
+                ", itemCount=" + itemCount +
+                '}';
+    }
+
+    public void getElements() {
         int index = 0;
-        for (int h : this.elements) {
-            if (h == hash) {
-                return index;
+        while (index < items.length) {
+            if (items[index] instanceof Integer) {
+                System.out.println(this.items[index]);
             }
             index++;
+
         }
-        return 0;
+
+    }
+
+    public class Tombstone {
+
     }
 
 }
