@@ -31,6 +31,7 @@ public class Bank {
         for (int i = 0; i < number; i++) {
             threads[i] = new Thread(new AccountTask(sourceAccounts.get(i), targetAccounts.get(i), amount));
             threads[i + number] = new Thread(new AccountTask(targetAccounts.get(i), sourceAccounts.get(i), amount));
+
         }
 
         for (final Thread thread : threads) {

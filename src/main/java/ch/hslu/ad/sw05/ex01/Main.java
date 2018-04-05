@@ -7,9 +7,10 @@ public class Main {
     final static Logger LOG = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        Bank bank = new Bank(10, 500);
+        LOG.info("Starting");
+        Bank bank = new Bank(50000, 10000);
         bank.createAccounts();
-        bank.startTransfers(10, 100);
+        bank.startTransfers(50000, 100);
         LOG.info(bank.toString());
     }
 }
