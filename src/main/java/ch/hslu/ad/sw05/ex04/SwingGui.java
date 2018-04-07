@@ -23,7 +23,7 @@ public class SwingGui extends JFrame implements Runnable {
         panel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //printBall(e.getX(), e.getY());
+                printBall(e.getX(), e.getY());
 
             }
 
@@ -82,9 +82,10 @@ public class SwingGui extends JFrame implements Runnable {
     @Override
     public void run() {
         while (true) {
+            revalidate();
             repaint();
             try {
-                Thread.sleep(10);
+                Thread.sleep(20);
             } catch (InterruptedException iex) {
                 iex.printStackTrace();
             }
