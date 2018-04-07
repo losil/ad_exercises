@@ -54,9 +54,7 @@ public class HashSet implements Set<Integer> {
         int index = Math.abs(hash % items.length);
         if (item instanceof Integer) {
             if (!(items[index] instanceof Tombstone)) {
-                if (items[index].equals(item)) {
-                    return true;
-                }
+                return items[index].equals(item);
             } else {
 
                 int currentIndex = index + 1;
@@ -86,7 +84,6 @@ public class HashSet implements Set<Integer> {
         }
 
 
-        return false;
     }
 
     @Override
@@ -138,11 +135,7 @@ public class HashSet implements Set<Integer> {
 
     @Override
     public boolean isFull() {
-        if (itemCount == items.length) {
-            return true;
-        } else {
-            return false;
-        }
+        return itemCount == items.length;
     }
 
     @Override

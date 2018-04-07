@@ -57,11 +57,7 @@ public class HashSet implements Set<Integer> {
 
     @Override
     public boolean isFull() {
-        if (itemCount == items.length) {
-            return true;
-        } else {
-            return false;
-        }
+        return itemCount == items.length;
     }
 
     @Override
