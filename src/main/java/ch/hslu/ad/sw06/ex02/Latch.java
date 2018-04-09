@@ -12,8 +12,11 @@ public class Latch implements Synch {
 
     @Override
     public synchronized void acquire() throws InterruptedException {
-        while (!isBlocked) {
-            this.wait();
+        while (isBlocked) {
+            this.wait(5000);
+            //notify all threads when timeout is reached
+            this.isBlocked = false;
+            this.notifyAll();
         }
 
 

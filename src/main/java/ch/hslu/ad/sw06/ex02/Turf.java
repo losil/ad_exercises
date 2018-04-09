@@ -13,13 +13,22 @@ public class Turf {
         List<Thread> horses = new ArrayList<>();
         Synch starterBox = new Latch();
 
+
         LOG.info("Start...");
-        for (int i = 1; i < 6; i++) {
-            Thread t = new Thread(new RaceHorse(starterBox), "Horse" + i);
+        for (int i = 1; i <= 5; i++) {
+            Thread t = new Thread(new RaceHorse(starterBox), "Horse-" + i);
             horses.add(t);
             t.start();
         }
-
+        /*
+        Block threads to delay the start
+         */
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException iex) {
+            LOG.error(iex);
+        }
+        starterBox.release();
 
         LOG.info("Checking if break is required...");
 
