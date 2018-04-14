@@ -21,6 +21,7 @@ public final class MyTask implements Runnable {
                 //wait();
                 lock.wait();
             } catch (InterruptedException iex) {
+                Thread.currentThread().interrupt();
                 return;
             }
             LOG.info("aufgewacht");

@@ -44,7 +44,7 @@ public class Semaphore {
         if (this.permits + permits > this.limit) {
             throw new IllegalArgumentException("the permits to release and the currently available permits mustn't be greater than the permit limit");
         }
-        this.notify();
+        this.notifyAll();
         this.permits += permits;
     }
 }

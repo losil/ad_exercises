@@ -25,11 +25,12 @@ public final class RaceHorse implements Runnable {
             startSignal.acquire();
             LOG.info("Race Horse " + this.runThread.getName() + " starts running.");
             Thread.sleep(random.nextInt(3000));
-            LOG.info("Race Horse " + this.runThread.getName() + " arrived target.");
         } catch (InterruptedException iex) {
             LOG.debug(iex);
             LOG.info("Race Horse " + this.runThread.getName() + " breaks off the run.");
+            return;
         }
+        LOG.info("Race Horse " + this.runThread.getName() + " arrived target.");
 
     }
 }

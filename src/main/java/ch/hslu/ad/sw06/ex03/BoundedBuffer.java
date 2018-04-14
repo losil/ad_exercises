@@ -9,10 +9,12 @@ public class BoundedBuffer<T> {
     private static final Logger LOG = LogManager.getLogger(BoundedBuffer.class);
     private ArrayDeque<T> buffer;
     private int size;
+    private int limit;
 
     public BoundedBuffer(final int size) {
         this.buffer = new ArrayDeque<>(size);
         this.size = 0;
+        this.limit = size;
     }
 
     public BoundedBuffer() {
@@ -28,7 +30,7 @@ public class BoundedBuffer<T> {
     }
 
     public boolean full() {
-        return this.size == this.buffer.size();
+        return this.size == this.limit;
     }
 
     public synchronized T get() {
@@ -46,7 +48,7 @@ public class BoundedBuffer<T> {
     }
 
 
-    public synchronized void push(final T element) {
+    public synchronized void put(final T element) {
         while (this.full()) {
             try {
                 this.wait(2000);
@@ -54,9 +56,42 @@ public class BoundedBuffer<T> {
                 LOG.debug(iex);
             }
         }
+        this.buffer.add(element);
+        this.size++;
+        this.notifyAll();
+    }
+
+    public T front() {
+        return this.buffer.getFirst();
+    }
+
+    public T back() {
+        return this.buffer.getLast();
+    }
+
+    public synchronized void push(T element) throws InterruptedException {
+        while (this.size == this.limit) {
+            this.wait(2000);
+        }
         this.buffer.push(element);
         this.size++;
         this.notifyAll();
+
+    }
+
+    public synchronized T pop() throws InterruptedException {
+        while (this.size == 0) {
+            this.wait();
+        }
+        T element = this.buffer.pop();
+        this.size--;
+        this.notifyAll();
+        return element;
+
+    }
+
+    public String toString() {
+        return this.buffer.toString();
     }
 
 }

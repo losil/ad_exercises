@@ -21,7 +21,7 @@ public class Main {
                     @Override
                     public void run() {
                         Random random = new Random();
-                        bb.push(random.nextInt(3100000));
+                        bb.put(300000);
 
                     }
                 }));
@@ -37,6 +37,7 @@ public class Main {
         }
         for (Thread thread : workers) {
             thread.start();
+            LOG.info(bb.toString());
         }
 
 
