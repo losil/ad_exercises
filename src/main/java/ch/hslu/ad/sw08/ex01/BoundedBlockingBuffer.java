@@ -52,5 +52,11 @@ public class BoundedBlockingBuffer<T> {
         return this.buffer.pop();
     }
 
+    public T poll() throws InterruptedException {
+        return this.buffer.poll();
+    }
+
+
+
 
 }

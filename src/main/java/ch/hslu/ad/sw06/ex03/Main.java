@@ -14,6 +14,8 @@ public class Main {
     public static void main(String[] args) {
         BoundedBuffer<Integer> bb = new BoundedBuffer<>(20);
         List<Thread> workers = new ArrayList<>();
+        int sumProduced = 0;
+        int sumConsumed = 0;
         for (int i = 0; i < 20; i++) {
 
             if (i % 2 == 0) {
@@ -21,7 +23,8 @@ public class Main {
                     @Override
                     public void run() {
                         Random random = new Random();
-                        bb.put(300000);
+                        int rand = random.nextInt(3000);
+                        bb.put(rand);
 
                     }
                 }));
