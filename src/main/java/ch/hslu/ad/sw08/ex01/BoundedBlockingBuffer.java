@@ -56,6 +56,11 @@ public class BoundedBlockingBuffer<T> {
         return this.buffer.poll();
     }
 
+    @Override
+    public String toString() {
+        return this.buffer.toString();
+    }
+
 
 
 
