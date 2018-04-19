@@ -6,21 +6,22 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigInteger;
 import java.util.Random;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrimeGenerator {
 
     private static final Logger LOG = LogManager.getLogger(PrimeGenerator.class);
     private final ExecutorService executor;
+    private AtomicInteger n = new AtomicInteger(1);
     private final Callable<Integer> callable = () -> {
-        int n = 1;
-        while (n <= 100) {
+        while (n.get() <= 20) {
             BigInteger bigInt = new BigInteger(1024, new Random());
             if (bigInt.isProbablePrime(Integer.MAX_VALUE)) {
-                LOG.info("Prime " + n + ": " + bigInt);
-                n++;
+                LOG.info("Prime " + this.n + ": " + bigInt);
+                this.n.incrementAndGet();
             }
         }
-        return n;
+        return n.get();
     };
 
     public PrimeGenerator(final int threads) {
@@ -31,13 +32,18 @@ public class PrimeGenerator {
         LOG.info("Starting");
         long start = System.currentTimeMillis();
         Future<Integer> future = executor.submit(this.callable);
+
+        executor.submit(callable);
+
         try {
             future.get();
             LOG.info("Finished in " + ((System.currentTimeMillis() - start) / 1000) + " seconds");
-            executor.shutdown();
         } catch (InterruptedException | ExecutionException ex) {
             LOG.debug(ex);
         }
+        executor.shutdown();
+
+
 
 
     }

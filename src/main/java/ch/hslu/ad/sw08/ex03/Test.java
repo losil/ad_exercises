@@ -31,10 +31,10 @@ public class Test {
         try {
             LOG.info("Finshed with a count of: " + future.get());
             LOG.info("Runtime of " + this.name + ": " + (System.currentTimeMillis() - start) + " ms");
-            executor.shutdown();
         } catch (ExecutionException | InterruptedException ex) {
             LOG.debug(ex);
         }
+        executor.shutdown();
     }
 }
 
