@@ -14,7 +14,7 @@ public class PrimeGenerator {
     private final ExecutorService executor;
     private AtomicInteger n = new AtomicInteger(1);
     private final Callable<Integer> callable = () -> {
-        while (n.get() <= 20) {
+        while (n.get() <= 100) {
             BigInteger bigInt = new BigInteger(1024, new Random());
             if (bigInt.isProbablePrime(Integer.MAX_VALUE)) {
                 LOG.info("Prime " + this.n + ": " + bigInt);
@@ -28,7 +28,7 @@ public class PrimeGenerator {
         this.executor = Executors.newFixedThreadPool(threads);
     }
 
-    public void generate() {
+    public long generate() {
         LOG.info("Starting");
         long start = System.currentTimeMillis();
         Future<Integer> future = executor.submit(this.callable);
@@ -37,11 +37,15 @@ public class PrimeGenerator {
 
         try {
             future.get();
+            long time = (System.currentTimeMillis() - start) / 1000;
             LOG.info("Finished in " + ((System.currentTimeMillis() - start) / 1000) + " seconds");
+            executor.shutdown();
+            return time;
         } catch (InterruptedException | ExecutionException ex) {
             LOG.debug(ex);
         }
         executor.shutdown();
+        return 0;
 
 
 

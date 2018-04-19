@@ -12,7 +12,7 @@ public class Main {
 
     public static final Logger LOG = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         BoundedBlockingBuffer<Integer> bb = new BoundedBlockingBuffer<>(40);
         List<Thread> workers = new ArrayList<>();
         int sumProduced = 0;
@@ -37,11 +37,8 @@ public class Main {
                 workers.add(new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        try {
                             bb.get();
-                        } catch (InterruptedException iex) {
-                            LOG.debug(iex);
-                        }
+
                     }
                 }));
             }

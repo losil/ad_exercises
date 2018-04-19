@@ -32,7 +32,7 @@ public class BoundedBlockingBuffer<T> {
         this.buffer.put(element);
     }
 
-    public T get() throws InterruptedException {
+    public T get() {
         return this.buffer.getFirst();
     }
 
@@ -52,7 +52,7 @@ public class BoundedBlockingBuffer<T> {
         return this.buffer.pop();
     }
 
-    public T poll() throws InterruptedException {
+    public T poll() {
         return this.buffer.poll();
     }
 
