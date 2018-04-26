@@ -12,7 +12,6 @@ public class Sort {
             }
             swap(a, i, biggestIndex);
         }
-
     }
 
     /**
@@ -62,8 +61,6 @@ public class Sort {
             }
             swap(a, i, smallestIndex);
         }
-
-
     }
 
     private static void swap(int[] array, final int a, final int b) {
