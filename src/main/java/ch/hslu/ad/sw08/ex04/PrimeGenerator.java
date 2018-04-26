@@ -13,6 +13,7 @@ public class PrimeGenerator {
     private static final Logger LOG = LogManager.getLogger(PrimeGenerator.class);
     private final ExecutorService executor;
     private AtomicInteger n = new AtomicInteger(1);
+
     private final Callable<Integer> callable = () -> {
         while (n.get() <= 100) {
             BigInteger bigInt = new BigInteger(1024, new Random());

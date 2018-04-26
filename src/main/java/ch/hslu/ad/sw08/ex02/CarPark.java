@@ -30,9 +30,6 @@ public class CarPark {
                 return;
             }
 
-            if (freeParkingSpots.get() == 0) {
-                return;
-            }
         }
         try {
             this.parkedCars.put(car);
@@ -57,6 +54,7 @@ public class CarPark {
         if (this.parkedCars.contains(car)) {
             this.freeParkingSpots.incrementAndGet();
             parkedCars.remove(car);
+            LOG.info("Car" + Thread.currentThread().getName() + " has left " + this.name);
             this.notifyAll();
         } else {
             LOG.error(Thread.currentThread().getName() + " is not parked in " + this.name + " and cannot leave");

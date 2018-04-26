@@ -3,8 +3,11 @@ package ch.hslu.ad.sw08.ex04;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.*;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 public class Main {
 
@@ -14,6 +17,10 @@ public class Main {
         int threads1 = 10;
         int threads2 = 1;
 
+        //try (PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File("/var/tmp"), Charset.forName("UTF-8")))))
+        //} catch (ExecutionException ex) {
+        //    LOG.debug(ex);
+        //}
         PrimeGenerator primeGen = new PrimeGenerator(threads1);
         long time1 = primeGen.generate();
 

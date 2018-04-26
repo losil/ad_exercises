@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Simulation sim = new Simulation(100);
+        Simulation sim = new Simulation(1000);
         sim.startSimulation();
     }
 }

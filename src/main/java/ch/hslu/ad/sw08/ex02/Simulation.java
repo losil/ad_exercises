@@ -37,6 +37,16 @@ public class Simulation {
             executor.execute(() -> {
                 Thread.currentThread().setName("Car" + finID);
                 carPark1.park(car);
+                if (Thread.currentThread().getState() == Thread.State.WAITING && car.getCarType() == CarType.FIRST_AND_NEXT) {
+                    Thread.currentThread().interrupt();
+                    carPark2.park(car);
+                    try {
+                        Thread.sleep(car.getParkDuration());
+                    } catch (InterruptedException iex) {
+                        LOG.debug(iex);
+                    }
+
+                }
                 try {
                     Thread.sleep(car.getParkDuration());
                 } catch (InterruptedException iex) {
@@ -46,6 +56,8 @@ public class Simulation {
             });
             id++;
         }
+        executor.shutdown();
+        LOG.info("Simulation ended");
     }
 
 }

@@ -8,7 +8,7 @@ public class Car {
     private CarType carType;
 
     public Car() {
-        this.parkDuration = 200 + new Random().nextInt(300);
+        this.parkDuration = 2000 + new Random().nextInt(3000);
         this.carType = CarType.getRandomCarType();
     }
 

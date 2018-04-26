@@ -18,7 +18,7 @@ public class Test {
     public void runTest() {
         final ExecutorService executor = Executors.newFixedThreadPool(10);
         final Callable<Integer> callable = () -> {
-            for (int i = 0; i < 1000000; i++) {
+            for (int i = 0; i < 10000000; i++) {
                 this.counter.increment();
             }
             return this.counter.get();
