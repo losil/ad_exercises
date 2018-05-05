@@ -42,7 +42,7 @@ public class Main {
          */
         int[] bigArray = new int[20000];
         for (int i = 0; i < bigArray.length; i++) {
-            bigArray[i] = random.nextInt(100);
+            bigArray[i] = random.nextInt(10000);
         }
         //Arrays.sort(bigArray);
         //Arrays.sort(bigArray, Collections.reverseOrder());
