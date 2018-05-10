@@ -21,7 +21,7 @@ public class SortTask extends RecursiveAction {
         this.array = a;
         this.min = min;
         this.max = max;
-        THRESHOLD = a.length / 8;
+        THRESHOLD = a.length / Runtime.getRuntime().availableProcessors();
     }
 
     @Override

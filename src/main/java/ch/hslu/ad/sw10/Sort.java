@@ -128,7 +128,7 @@ public class Sort {
         char[] array = new char[length];
         Random random = new Random();
         for (int i = 0; i < array.length; i++) {
-            array[i] = (char) (random.nextInt(26) + 'a');
+            array[i] = (char) (random.nextInt(52) + 'A');
         }
         return array;
     }
