@@ -1,7 +1,6 @@
 package ch.hslu.ad.sw09.ex04;
 
 import com.sun.deploy.util.ArrayUtil;
-import com.sun.tools.javac.util.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
