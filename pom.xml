@@ -85,7 +85,7 @@
         <javadocPlugin.version>3.1.1</javadocPlugin.version>
         <jxrPlugin.version>2.5</jxrPlugin.version>
         <pmdPlugin.version>3.9.0</pmdPlugin.version>
-        <sourcePlugin.version>3.0.1</sourcePlugin.version>
+        <sourcePlugin.version>3.2.1</sourcePlugin.version>
         <surefirePlugin.version>2.22.2</surefirePlugin.version>
         <surefireReportPlugin.version>${surefirePlugin.version}</surefireReportPlugin.version>
         <failsafePlugin.version>2.22.2</failsafePlugin.version>
@@ -523,7 +523,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.2.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
