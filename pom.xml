@@ -80,7 +80,7 @@
 
         <mavenChangesPlugin.version>2.12.1</mavenChangesPlugin.version>
         <mavenChangelogPlugin.version>2.3</mavenChangelogPlugin.version>
-        <checkstylePlugin.version>3.1.0</checkstylePlugin.version>
+        <checkstylePlugin.version>3.1.1</checkstylePlugin.version>
         <jacocoPlugin.version>0.8.0</jacocoPlugin.version>
         <javadocPlugin.version>3.1.1</javadocPlugin.version>
         <jxrPlugin.version>2.5</jxrPlugin.version>
